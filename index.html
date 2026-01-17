@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unclick+</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: Tahoma, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #1a1636, #0b0f2a);
+      color: #f5c6e6;
+      cursor: pointer;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+    }
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      margin: 0;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" onclick="next()">
+    <img id="photo" />
+    <h1 id="text">FELIZ 14 DE FEBRERO 💜</h1>
+  </div>
+
+  <script>
+    const texts = [
+      "FELIZ 14 DE FEBRERO 💜",
+      "Te amo con la calma de la noche",
+      "Gracias por existir",
+      "A tu lado todo tiene sentido",
+      "Siempre tú",
+      "Mi lugar favorito es contigo"
+    ];
+
+    const photos = [
+      "fotitos/1.jpg",
+      "fotitos/2.jpg",
+      "fotitos/3.jpg",
+      "fotitos/4.jpg",
+      "fotitos/5.jpg",
+      "fotitos/6.jpg",
+      "fotitos/7.jpg",
+      "fotitos/8.jpg"
+    ];
+
+    let t = 0;
+    let p = 0;
+    let showText = true;
+
+    function next() {
+      const img = document.getElementById("photo");
+      const txt = document.getElementById("text");
+
+      if (showText) {
+        txt.style.display = "none";
+        img.src = photos[p];
+        img.style.display = "block";
+        p = (p + 1) % photos.length;
+      } else {
+        img.style.display = "none";
+        txt.textContent = texts[t];
+        txt.style.display = "block";
+        t = (t + 1) % texts.length;
+      }
+
+      showText = !showText;
+    }
+  </script>
+</body>
+</html>
